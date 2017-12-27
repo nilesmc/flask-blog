@@ -13,7 +13,6 @@ class Config(object):
     SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL') or "postgresql://localhost/dev_flask-blog"
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
-
 class ProductionConfig(Config):
     DEBUG = False
 
