@@ -1,16 +1,19 @@
+# Define the application directory
 import os
+from os.path import join, dirname
+from dotenv import load_dotenv
 basedir = os.path.abspath(os.path.dirname(__file__))
+dotenv_path = join(basedir, '.env')
+load_dotenv(dotenv_path)
 
 class Config(object):
-    # WTForms token
-    SECRET_KEY = os.environ.get('SECRET_KEY') or 'you-will-never-guess'
-
     # PSQL/SQL Alchemy Database Config
     DEBUG = False
     TESTING = False
     CSRF_ENABLED = True
-    SECRET_KEY = 'this-really-needs-to-be-changed'
-    SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL') or "postgresql://localhost/dev_flask-blog"
+    # WTForm Token
+    SECRET_KEY = os.environ.get('SECRET_KEY')
+    SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL')
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
 class ProductionConfig(Config):
