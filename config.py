@@ -8,7 +8,7 @@ load_dotenv(dotenv_path)
 
 class Config(object):
     # PSQL/SQL Alchemy Database Config
-    DEBUG = False
+    DEBUG = True
     TESTING = False
     CSRF_ENABLED = True
     # WTForm Token
