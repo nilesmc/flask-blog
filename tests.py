@@ -16,14 +16,14 @@ class UserModelCase(unittest.TestCase):
         db.drop_all()
 
     def test_password_hashing(self):
-        u = User(username='susan')
-        u.set_password('cat')
-        self.assertFalse(u.check_password('dog'))
-        self.assertTrue(u.check_password('cat'))
+        user = User(username='susan')
+        user.set_password('cat')
+        self.assertFalse(user.check_password('dog'))
+        self.assertTrue(user.check_password('cat'))
 
     def test_avatar(self):
-        u = User(username='john', email='john@example.com')
-        self.assertEqual(u.avatar(128), ('https://www.gravatar.com/avatar/'
+        user = User(username='john', email='john@example.com')
+        self.assertEqual(user.avatar(128), ('https://www.gravatar.com/avatar/'
                                          'd4c74594d841139328695756648b6bd6'
                                          '?d=identicon&s=128'))
 
