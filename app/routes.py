@@ -15,7 +15,7 @@ def before_request():
 @app.route('/index')
 @login_required
 def index():
-  posts = Post.query.all()
+  posts = current_user.followed_posts().all()
   return render_template('index.html', title='Home', posts=posts)
 
 @app.route('/login', methods=['GET', 'POST'])
