@@ -49,6 +49,16 @@ class User(UserMixin, db.Model):
         return self.followed.filter(
             followers.c.followed_id == user.id).count() > 0
 
+    def followed_posts(self):
+        # The posts of user that follow the user
+        followed = Post.query.join(
+            followers, (followers.c.followed_id == Post.user_id)).filter(
+                followers.c.follower_id == self.id)
+        # The post of the user themselves
+        own = Post.query.filter_by(user_id=self.id)
+        # merging all the posts together and ordering them by timestamp
+        return followed.union(own).order_by(Post.timestamp.desc())
+
 @login.user_loader
 def load_user(id):
     return User.query.get(int(id))
